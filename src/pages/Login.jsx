@@ -9,7 +9,7 @@ import { auth } from "../firebase"
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useDispatch, useSelector } from 'react-redux';
 import { profileActions } from '../store/profileSlice'
-
+import { useGlobalContext } from '../context/globalContext';
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate();
@@ -19,13 +19,16 @@ const Login = () => {
         dispatch(profileActions.setEmail(usr?.email))
     })
 
+    const { setLoading } = useGlobalContext();
 
     const handleLogin = async (data) => {
+        setLoading(true);
         const {  email, password } = data;
 
         signInWithEmailAndPassword(auth, email, password).then((res) => {
             unsub();
             console.log("login user", res);
+            setLoading(false);
             navigate('/user')
         })
             .catch

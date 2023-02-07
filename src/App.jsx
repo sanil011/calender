@@ -7,7 +7,10 @@ import Person from "./pages/Person";
 import { useDispatch, useSelector } from 'react-redux';
 import { profileActions } from './store/profileSlice'
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
+import {  Backdrop, CircularProgress } from "@mui/material";
+import { useGlobalContext } from './context/globalContext'
 function App() {
+
  const {email} = useSelector((state)=>state.profile)
   const dispatch = useDispatch();
   useEffect(() => {
@@ -19,6 +22,8 @@ function App() {
       unsub();
     }
   }, [])
+
+  const { loading } = useGlobalContext();
   
   const AuthRoute = ({ children }) => {
     if (!email) {
@@ -38,6 +43,9 @@ function App() {
 
     <BrowserRouter>
       <div className="App">
+        <Backdrop style={{ zIndex: "10000", color: "#fff" }} open={loading}>
+          <CircularProgress />
+        </Backdrop>
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/user" element={<AuthRoute><Person  /></AuthRoute>} />

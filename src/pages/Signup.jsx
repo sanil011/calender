@@ -10,6 +10,7 @@ import { addDoc, collection, query, where, getDocs } from "firebase/firestore";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useDispatch, useSelector } from 'react-redux';
 import { profileActions } from '../store/profileSlice'
+import { useGlobalContext } from '../context/globalContext';
 
 
 const Signup = () => {
@@ -21,8 +22,10 @@ const Signup = () => {
         dispatch(profileActions.setProfile(usr?.displayName))
         dispatch(profileActions.setEmail(usr?.email))
     })
+    const { setLoading } = useGlobalContext();
 
     const handleSignUp = async (data) => {
+        setLoading(true);
         const { name, email, password } = data;
         try {
             const d = query(collection(db, "users"), where("email", "==", email));
@@ -46,6 +49,7 @@ const Signup = () => {
                 () => {
                     unsub();
                     console.log("navigate signup");
+                    setLoading(false)
                     navigate('/user')
                 }
             )
