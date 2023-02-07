@@ -8,7 +8,7 @@ import Logo from "../assests/logo.svg"
 import { db,auth } from "../firebase"
 import { addDoc, collection, query, where, getDocs } from "firebase/firestore";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { profileActions } from '../store/profileSlice'
 import { useGlobalContext } from '../context/globalContext';
 
