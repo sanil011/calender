@@ -47,17 +47,18 @@ const Login = () => {
                     </Box>
                     </Link>
             <Grid container>
-                <Grid item md={6} sm={5}>
+                <Grid item md={6} sm={6}>
                     <Stack display={{ sm: "flex", xs: "none", md: "flex" }} justifyContent={"center"} mt={15}>
-                        <img src={Banner} />
+                        <img src={Banner} width={ "90%"} />
                     </Stack>
                 </Grid>
-                <Grid item md={3} sx={{margin:"auto "}} mt={{sm:"4em",xs:"3em"}} >
+
+                <Grid item md={3} sm={6} sx={{margin:"auto "}} mt={{sm:"4em",xs:"3em"}} >
                     <Box display={"flex"} width={"100%"} flexDirection={"column"} alignContent={"center"} gap={{md:4,lg:10,sm:2}}>
                         <Typography variant='h5'  fontWeight={600}>hey, Hello 👋</Typography>
                         <Typography color={"secondary"} >Enter the information you entered while registering</Typography>
                     </Box>
-                    <Box  width={"100%"} mt={4}>
+                    <Box  width={{md:"100%",sm:"80%"}} mt={4}>
                         <form onSubmit={handleSubmit(handleLogin)} style={{ display: "flex", flexDirection: "column",  }}>
                        
                             <label><Typography variant='subtitle2'>Email</Typography> </label>
