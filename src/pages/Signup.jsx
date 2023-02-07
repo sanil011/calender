@@ -8,11 +8,19 @@ import Logo from "../assests/logo.svg"
 import { db,auth } from "../firebase"
 import { addDoc, collection, query, where, getDocs } from "firebase/firestore";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { useDispatch, useSelector } from 'react-redux';
+import { profileActions } from '../store/profileSlice'
 
 
 const Signup = () => {
-    const navigate = useNavigate();
+
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const unsub = auth.onAuthStateChanged((usr) => {
+        dispatch(profileActions.setProfile(usr?.displayName))
+        dispatch(profileActions.setEmail(usr?.email))
+    })
 
     const handleSignUp = async (data) => {
         const { name, email, password } = data;
@@ -33,8 +41,14 @@ const Signup = () => {
                 await updateProfile(user, {
                     displayName: name,
                 });
-                navigate("/user");
-            })
+                
+            }).then(
+                () => {
+                    unsub();
+                    console.log("navigate signup");
+                    navigate('/user')
+                }
+            )
         }
         catch (err) {
             console.log(err);
@@ -80,13 +94,7 @@ const Signup = () => {
 
                                 {...register("password", { required: true })} />
                             {errors.Password?.type === 'required' && <p role="alert">Password is required</p>}
-                            {/* <div style={{ display: "flex",alignItems:"center",justifyContent:"space-between",marginBottom:"1em" }}>
-                                <Box display={"flex"}>
-                                <input type="checkbox" />
-                                <Typography mx={1} variant='subtitle2'>Remember me</Typography>
-                                </Box>
-                                <Typography variant='subtitle2'>Forgot Password?</Typography>
-                            </div> */}
+                            
                             <button type="submit"  style={{ height: "40px", backgroundColor: "#0367FC", border: "none", color: "white", borderRadius: "10px", cursor: "pointer" }} >Create account</button>
                         </form>
                         <Divider sx={{ margin: "1em 0" }}>or</Divider>

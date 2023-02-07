@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { profileActions } from './store/profileSlice'
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 function App() {
- const {user} = useSelector((state)=>state.profile)
+ const {email} = useSelector((state)=>state.profile)
   const dispatch = useDispatch();
   useEffect(() => {
     const unsub = auth.onAuthStateChanged((usr) => {
@@ -21,13 +21,14 @@ function App() {
   }, [])
   
   const AuthRoute = ({ children }) => {
-    if (!user) {
+    if (!email) {
+      console.log(email)
       return <Navigate to="/" replace />
     }
     return children;
   }
   const ProtectRoute = ({ children }) => {
-    if (user) {
+    if (email) {
       return <Navigate to="/user" replace />
     }
     return children;

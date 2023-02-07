@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
-    user: "", email: "",
+    user: false, email: "",
     meeting: [
         {
             "id": "id4",
