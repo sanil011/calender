@@ -29,21 +29,21 @@ const {user} = useSelector((state)=>state.profile)
     };
   return (
       <div >
-          <Grid container alignItems={"center"} justifyContent={"center"} my={1}>
-              <Grid item md={ 2 } display={"flex"} alignItems={"center"} >
+          <Grid container alignItems={"center"} justifyContent={"center"} my={1} mx={{xs:".5em"}}>
+              <Grid item md={2} sm={4} xs={6} display={"flex"} alignItems={"center"} >
                   <img src={Logo} alt="" width={"30px"} style={{ margin: "0 4px" }} />
                   <Divider orientation="vertical" flexItem />
                   <Typography mx={1} variant="h5" color={"secondary.main"}> CalenderApp</Typography>
               </Grid>
 
-             <Grid item md={5} display={"flex"} justifyContent={"space-evenly"}>
+             <Grid item md={5} sm={4}  display={{sm:"flex",xs:"none"}} justifyContent={"space-evenly"}>
                   <Typography variant='h6' color={"secondary.main"}>Home</Typography>
 
                   <Typography variant='h6' color={"secondary.main"}>Availability</Typography>
 
                   <Typography variant='h6' color={"secondary.main"}>Integration</Typography>
               </Grid>
-              <Grid item md={ 2 } display={"flex"} justifyContent={"space-around"} alignItems={"center"}>
+              <Grid item md={2} sm={4} xs={6} display={"flex"} justifyContent={"space-around"} alignItems={"center"}>
                   <div
                       style={{
                           display: "flex", justifyContent: "space-around", alignItems: "center"
@@ -54,8 +54,6 @@ const {user} = useSelector((state)=>state.profile)
                       <Divider orientation="vertical" flexItem sx={{ marginRight: "4px" }} />
                       {user}
                   </div>
-                      
-
                <Button
                       variant={ "contained"}
                       sx={{ padding: ".5em 1.5em", borderRadius: "20px" }}
@@ -66,7 +64,7 @@ const {user} = useSelector((state)=>state.profile)
               </Grid>
           </Grid>
 
-          <Box sx={{marginTop:"4em",width:"80%",marginLeft:"10em"}}>
+          <Box sx={{ marginTop: "4em", width: "80%", }} marginLeft={{md:"10em",sm:"4em",xs:"1em"}}>
               <Box  display={"flex"} flexDirection={"column"} >
               <Box>
                  <Typography variant='h4' fontWeight={400}>My Calender App</Typography>
