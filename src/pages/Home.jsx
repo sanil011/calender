@@ -54,7 +54,7 @@ const Home = ({ name }) => {
                     </Box>
                 </Grid>
                 <Grid item xs={11} sm={11} md={6} textAlign={"center"}>
-                    <img src={Banner} style={{ width: "70%" }} />
+                    <img src={Banner} style={{ width: "90%" }} />
                 </Grid>
             </Grid>
         </div>
