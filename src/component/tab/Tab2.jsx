@@ -29,7 +29,7 @@ const Tab2 = () => {
     }
   return (
       <Box>
-          <Box variant="outlined" sx={{ width: 620, padding: "2em" }}>
+          <Box variant="outlined" width={{md:620,sm:"90vw",xs:"98vw"}} padding={{md:"2em",sm:"1em",xs:".5em"}}  >
               <Typography variant='h5' mb={5} textAlign={"center"}>Create a Meeting</Typography>
                     <Stack direction={"row"} justifyContent={"space-between"} my={1}>    
               <TextField label="Title" value={title} onChange={(e) => {
